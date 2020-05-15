@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MyAssistant</title>
+    <link rel="stylesheet" href="css/notes.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'/>
+</head>
+<body>
+    <header>
+        <div class="return">
+            <a href="index.html"><i class="fas fa-home"></i></a>
+        </div>
+        <div class="titlePage">
+            <h1>Notities</h1>
+        </div>
+    </header>
+    <main>
+        <div class="subjects">
+            <h2>Notities</h2>
+            <div class="subjectContainer" id="subjectContainer">
+
+            </div>
+            <div class="addSubject">
+                <div class="addSubjectButton" id="addSubjectButton">
+                    <p><i class="fas fa-plus"></i></p>
+                </div>
+                <div class="addForm" id="addForm">
+                    <p id="closeNewForm"><i class="fas fa-window-close"></i></p>
+                    <form id="addNoteForm">
+                        <input type="text" id="input" placeholder="Typ hier...">
+                        <button id="addNoteBTN">Nieuwe notitie</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="note">
+            <div id="emptyDiv">
+                
+            </div>
+            <div class="data" id="dataDiv">
+                <h2 id="subject-titel-data"></h2>
+                <form id="inputForm">
+                    <textarea name="note" id="noteblock" cols="150" rows="25" placeholder="This is your note"></textarea>
+                    <div class="buttons">
+                        <button id="saveBTN">Save</button>
+                        <button id="deleteBTN">Delete deze notitie</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="./js/notes/notesMain.js" type="module"></script>
+</body>
+</html>

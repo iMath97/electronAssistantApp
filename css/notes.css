@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css?family=Balsamiq+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-family: "Balsamiq Sans", cursive;
+  font-size: 5.3rem;
+  font-weight: bold;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: #F3F3F3;
+  overflow: hidden;
+}
+
+.wrapper {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.return {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5vw;
+  background-color: #2B2B2B;
+}
+.return a {
+  color: #F3F3F3;
+  padding: 1rem 1.5rem;
+  font-size: 3rem;
+}
+.return a:hover {
+  color: #E2E2E2;
+}
+
+.titlePage {
+  background-color: #2B2B2B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  width: 95vw;
+}
+.titlePage h1 {
+  color: #F3F3F3;
+}
+
+main {
+  display: flex;
+  height: 90vh;
+}
+main .subjects {
+  width: 20vw;
+  background-color: #0077FF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main .subjects h2 {
+  color: #F3F3F3;
+  font-weight: bold;
+  margin: 1rem 0;
+  text-decoration: underline;
+}
+main .subjects .subjectContainer {
+  width: 100%;
+  height: 85%;
+  overflow-y: auto;
+}
+main .subjects .subjectContainer .empty {
+  color: #F3F3F3;
+  text-align: center;
+}
+main .subjects .subjectContainer .card {
+  width: 100%;
+}
+main .subjects .subjectContainer .card:nth-child(odd) {
+  background-color: #2E90FF;
+}
+main .subjects .subjectContainer .card:hover {
+  background-color: #0064D6;
+  cursor: pointer;
+}
+main .subjects .subjectContainer .card .card-titel {
+  color: #F3F3F3;
+  padding: 2rem 0;
+  text-align: center;
+}
+main .subjects .addSubject {
+  margin-top: 2rem;
+}
+main .subjects .addSubject .addSubjectButton {
+  background-color: #F3F3F3;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+main .subjects .addSubject .addSubjectButton p {
+  color: #0077FF;
+  font-size: 2.5rem;
+}
+main .subjects .addSubject .addSubjectButton:hover {
+  background-color: #E2E2E2;
+}
+main .subjects .addSubject .addForm {
+  position: absolute;
+  bottom: -14rem;
+  left: 0;
+  width: 74rem;
+  height: 14rem;
+  background-color: #0064D6;
+  border-radius: 0 2rem 0 0;
+}
+main .subjects .addSubject .addForm #closeNewForm {
+  color: #a60000;
+  font-size: 2.5rem;
+  width: 5rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+main .subjects .addSubject .addForm #closeNewForm:hover {
+  color: #850000;
+}
+main .subjects .addSubject .addForm form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40%;
+}
+main .subjects .addSubject .addForm form input {
+  width: 50%;
+  background-color: #2E90FF;
+  border: none;
+  border-radius: 2rem;
+  color: #F3F3F3;
+  padding: 2rem;
+  margin-right: 3rem;
+  outline: none;
+}
+main .subjects .addSubject .addForm form input::placeholder {
+  color: #F3F3F3;
+}
+main .subjects .addSubject .addForm form button {
+  background-color: #2E90FF;
+  color: #F3F3F3;
+  border: none;
+  border-radius: 2rem;
+  padding: 2rem 2rem;
+  width: 25%;
+  margin-right: 3rem;
+  outline: none;
+  cursor: pointer;
+}
+main .subjects .addSubject .addForm form button:hover {
+  background-color: #0077FF;
+}
+main .note #emptyDiv {
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+}
+main .note #emptyDiv.hidden {
+  display: none;
+}
+main .note #emptyDiv button {
+  background-color: #0077FF;
+  color: #F3F3F3;
+  border: none;
+  border-radius: 2rem;
+  padding: 2rem 2rem;
+  width: 25%;
+  margin-top: 3rem;
+  margin-right: 3rem;
+  outline: none;
+  cursor: pointer;
+}
+main .note #emptyDiv button:hover {
+  background-color: #0064D6;
+}
+main .note .data {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main .note .data.hidden {
+  display: none;
+}
+main .note .data h2 {
+  color: #2B2B2B;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+main .note .data form textarea {
+  background-color: #E2E2E2;
+  border: none;
+  border-radius: 4rem;
+  outline: none;
+  padding: 3rem;
+}
+main .note .data form textarea::placeholder {
+  color: #2B2B2B;
+}
+main .note .data form .buttons {
+  margin-top: 1.5rem;
+  width: 73%;
+}
+main .note .data form .buttons button {
+  background-color: #0077FF;
+  color: #F3F3F3;
+  border: none;
+  border-radius: 2rem;
+  padding: 2rem 2rem;
+  width: 25%;
+  margin-right: 3rem;
+  outline: none;
+  cursor: pointer;
+}
+main .note .data form .buttons button:hover {
+  background-color: #0064D6;
+}
+main .note .data form .buttons button:last-child {
+  background-color: #a60000;
+  margin-right: 0;
+}
+main .note .data form .buttons button:last-child:hover {
+  background-color: #850000;
+}
+
+/*# sourceMappingURL=notes.css.map */
