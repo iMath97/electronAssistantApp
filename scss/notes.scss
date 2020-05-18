@@ -116,13 +116,17 @@ main {
                 height: 14rem;
                 background-color: $darkblue;
                 border-radius:  0 2rem 0 0;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
 
                 #closeNewForm {
                     color: $red;
                     font-size: 2.5rem;
-                    width: 5rem;
+                    width: 3rem;
                     margin-top: 1rem;
-                    margin-left: 1rem;
+                    margin-right: 1.3rem;
+                    text-align: center;
                     cursor: pointer;
 
                     &:hover {

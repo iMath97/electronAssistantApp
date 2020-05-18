@@ -129,13 +129,17 @@ main .subjects .addSubject .addForm {
   height: 14rem;
   background-color: #0064D6;
   border-radius: 0 2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 main .subjects .addSubject .addForm #closeNewForm {
   color: #a60000;
   font-size: 2.5rem;
-  width: 5rem;
+  width: 3rem;
   margin-top: 1rem;
-  margin-left: 1rem;
+  margin-right: 1.3rem;
+  text-align: center;
   cursor: pointer;
 }
 main .subjects .addSubject .addForm #closeNewForm:hover {

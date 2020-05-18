@@ -87,6 +87,8 @@ main .subjects .subjectContainer .empty {
 }
 main .subjects .subjectContainer .card {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 main .subjects .subjectContainer .card:nth-child(odd) {
   background-color: #2E90FF;
@@ -95,10 +97,23 @@ main .subjects .subjectContainer .card:hover {
   background-color: #0064D6;
   cursor: pointer;
 }
+main .subjects .subjectContainer .card .card-del {
+  padding: 2rem 0;
+  position: relative;
+  right: 2rem;
+}
+main .subjects .subjectContainer .card .card-del i {
+  color: #a60000;
+  font-size: 2.5rem;
+}
+main .subjects .subjectContainer .card .card-del i:hover {
+  color: #850000;
+}
 main .subjects .subjectContainer .card .card-titel {
   color: #F3F3F3;
   padding: 2rem 0;
-  text-align: center;
+  position: relative;
+  left: 3rem;
 }
 main .list {
   width: 80vw;
@@ -183,13 +198,6 @@ main .list .new form .buttons button {
 }
 main .list .new form .buttons button:hover {
   background-color: #0064D6;
-}
-main .list .new form .buttons button:last-child {
-  background-color: #a60000;
-  margin-right: 0;
-}
-main .list .new form .buttons button:last-child:hover {
-  background-color: #850000;
 }
 
 /*# sourceMappingURL=todo.css.map */

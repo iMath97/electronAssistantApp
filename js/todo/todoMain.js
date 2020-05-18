@@ -8,6 +8,7 @@ let data = new Data("./data/todo.json");
 let Lists = data.getData();
 let index = 0;
 let amountSubjects = Lists.length;
+let isActive = false;
 
 // document selectors
 const subjectsDiv = document.getElementById("subjectContainer");
@@ -22,6 +23,7 @@ renderSidebar();
 renderData(index);
 interactivePoints();
 deletePoint();
+deleteSubs();
 
 // subjects sidebar rendering
 function renderSidebar(){
@@ -36,6 +38,19 @@ function renderSidebar(){
             let id = "number_" + i.toString();
             card.setAttribute("id", id);
 
+            // delete button
+            // paragraph
+            let pDel = document.createElement("p");
+            pDel.classList.add("card-del");
+
+
+            // icon
+            let btnDel = document.createElement("i");
+            btnDel.classList.add("fas");
+            btnDel.classList.add("fa-window-close");
+            id = "deleteSub_"+i.toString();
+            btnDel.setAttribute("id", id);
+
             // create card-titel
             let subject = document.createElement("p");
             subject.classList.add("card-titel");
@@ -43,6 +58,8 @@ function renderSidebar(){
 
             subjectsDiv.appendChild(card);
             card.appendChild(subject);
+            card.appendChild(pDel);
+            pDel.appendChild(btnDel);
         }
     } else {
         let empty = document.createElement("p");
@@ -60,10 +77,10 @@ function renderData(index){
 
     if(amountSubjects > 0){
         // render title
+        const numberOfPoints = Lists[index].punten.length;
         subjectTitelData.innerText = Lists[index].subject;
 
         // render points
-        const numberOfPoints = Lists[index].punten.length;
         let element;
 
         for(let i = 0; i<numberOfPoints; i++){
@@ -89,16 +106,23 @@ function interactivePoints(){
     for(let i = 0; i<Lists.length; i++){
         let point = document.getElementById("number_"+i);
         point.addEventListener("click", () => {
-            renderData(i);
-            index = i;
-            deletePoint();
+            if(i < Lists.length){
+                renderData(i);
+                index = i;
+                deletePoint();
+            }
+            
+            
+            deleteSubs();
         })
-        deletePoint();
+        
+        deleteSubs();
     }
 }
 
 // remove points
 function deletePoint(){
+    amountSubjects = Lists.length;
     if(amountSubjects > 0){
         for(let j = 0; j<Lists[index].punten.length; j++){
             let point = document.getElementById("point_"+j);
@@ -110,6 +134,33 @@ function deletePoint(){
             })
         }
     }
+}
+
+function deleteSubs(){
+    amountSubjects = Lists.length;
+    if(amountSubjects > 0 && isActive == false){
+        isActive = true;
+        for(let i = 0; i<Lists.length; i++){
+            const delButton = document.getElementById(`deleteSub_${i}`);
+        
+            delButton.addEventListener("click", () => {
+                if(i == Lists.length-1){
+                    Lists.pop();
+                } else {
+                    Lists.splice(i, 1);
+                }
+                index = 0;
+                renderData(0);
+                renderSidebar();
+                writeFile();
+                interactivePoints();
+                deletePoint();
+                isActive = false;
+            });
+
+        }
+    }
+    
 }
 
 // update json file
@@ -136,6 +187,9 @@ newPoint.addEventListener("click", () => {
         renderData(index);
         writeFile();
         interactivePoints();
+        isActive = false;
+        deleteSubs();
+        deletePoint();
     }
 })
 
@@ -150,18 +204,13 @@ newSub.addEventListener("click", () => {
         renderSidebar();
         writeFile();
         interactivePoints();
+        index = Lists.length-1;
+        renderData(index);
+        isActive = false;
+        deleteSubs();
+        deletePoint();
     }
 })
 
 
-// remove subject
-const delButton = document.getElementById('deleteSub');
 
-delButton.addEventListener("click", () => {
-    Lists.splice(index, 1);
-    renderData(0);
-    index = 0;
-    renderSidebar();
-    writeFile();
-    interactivePoints();
-});
