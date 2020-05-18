@@ -1,20 +1,29 @@
 // imports
-import Data from "./todoData.js"
+import Data from "../filehandler.js";
 
-let data = new Data();
+// objects
+let data = new Data("./data/todo.json");
 
+// variables
 let Lists = data.getData();
+let index = 0;
+let amountSubjects = Lists.length;
 
-
+// document selectors
 const subjectsDiv = document.getElementById("subjectContainer");
 const subjectTitelData = document.getElementById('subject-titel-data');
 const points = document.getElementById('points');
+const newPoint = document.getElementById('newPoint');
+const newSub = document.getElementById('newSub');
 
-let index = 0;
+// functions
+// call functions on pageload
+renderSidebar();
+renderData(index);
+interactivePoints();
+deletePoint();
 
-let amountSubjects = Lists.length;
-
-// subjects sidebar
+// subjects sidebar rendering
 function renderSidebar(){
     subjectsDiv.innerHTML = "";
     amountSubjects = Lists.length;
@@ -43,8 +52,6 @@ function renderSidebar(){
         subjectsDiv.appendChild(empty);
     }
 }
-
-renderSidebar();
 
 // data rendering
 function renderData(index){
@@ -77,17 +84,46 @@ function renderData(index){
     }
 }
 
-// standard first list rendering
-renderData(index);
+// select list
+function interactivePoints(){
+    for(let i = 0; i<Lists.length; i++){
+        let point = document.getElementById("number_"+i);
+        point.addEventListener("click", () => {
+            renderData(i);
+            index = i;
+            deletePoint();
+        })
+        deletePoint();
+    }
+}
 
+// remove points
+function deletePoint(){
+    if(amountSubjects > 0){
+        for(let j = 0; j<Lists[index].punten.length; j++){
+            let point = document.getElementById("point_"+j);
+            point.addEventListener("click", () => {
+                Lists[index].punten.splice(j, 1);
+                renderData(index);
+                writeFile();
+                deletePoint();
+            })
+        }
+    }
+}
+
+// update json file
+function writeFile(){
+    let newList = JSON.stringify(Lists);
+    data.writeData(newList);
+}
+
+// event listeners
 // new subject
 const inputForm = document.getElementById('inputForm');
 inputForm.addEventListener('submit', (e) => {
     e.preventDefault();
 });
-
-const newPoint = document.getElementById('newPoint');
-const newSub = document.getElementById('newSub');
 
 // add point
 newPoint.addEventListener("click", () => {
@@ -117,36 +153,6 @@ newSub.addEventListener("click", () => {
     }
 })
 
-// select list
-function interactivePoints(){
-    for(let i = 0; i<Lists.length; i++){
-        let point = document.getElementById("number_"+i);
-        point.addEventListener("click", () => {
-            renderData(i);
-            index = i;
-            deletePoint();
-        })
-        deletePoint();
-    }
-}
-
-interactivePoints();
-deletePoint();
-
-// remove points
-function deletePoint(){
-    if(amountSubjects > 0){
-        for(let j = 0; j<Lists[index].punten.length; j++){
-            let point = document.getElementById("point_"+j);
-            point.addEventListener("click", () => {
-                Lists[index].punten.splice(j, 1);
-                renderData(index);
-                writeFile();
-                deletePoint();
-            })
-        }
-    }
-}
 
 // remove subject
 const delButton = document.getElementById('deleteSub');
@@ -159,10 +165,3 @@ delButton.addEventListener("click", () => {
     writeFile();
     interactivePoints();
 });
-
-
-// update json file
-function writeFile(){
-    let newList = JSON.stringify(Lists);
-    data.writeData(newList);
-}

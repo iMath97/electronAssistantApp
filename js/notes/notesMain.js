@@ -1,21 +1,35 @@
 // imports
-import Data from "./notesData.js";
+import Data from "../filehandler.js";
 
-let data = new Data();
+// objects
+let data = new Data("./data/todo.json");
 
+
+// variables
 let notes = data.getData();
+let index = 0;
+let amountSubjects = notes.length;
 
 
+// document selectors
 const subjectsDiv = document.getElementById("subjectContainer");
 const subjectTitelData = document.getElementById('subject-titel-data');
 const subjectNote = document.getElementById('noteblock');
 const dataDiv = document.getElementById('dataDiv');
+const delButton = document.getElementById('deleteBTN');
+const saveButton = document.getElementById('saveBTN');
+const inputFormAddNew = document.getElementById('addNoteForm');
+const inputFormNew = document.getElementById('inputForm');
+const openButton = document.getElementById('addSubjectButton');
+const openDiv = document.getElementById('addForm');
+const closeButton = document.getElementById('closeNewForm');
+const newSub = document.getElementById('addNoteBTN');
 
-let index = 0;
-
-let amountSubjects = notes.length;
-// standard first list rendering
+// functions
+// call functions on pageload
+renderSidebar();
 renderData(index);
+interactivePoints();
 
 // subjects sidebar
 function renderSidebar(){
@@ -46,8 +60,6 @@ function renderSidebar(){
         subjectsDiv.appendChild(empty);
     }
 }
-
-renderSidebar();
 
 // data rendering
 function renderData(index){
@@ -82,8 +94,6 @@ function renderData(index){
     }
 }
 
-
-
 // select points
 function interactivePoints(){
     for(let i = 0; i<notes.length; i++){
@@ -95,12 +105,14 @@ function interactivePoints(){
     }
 }
 
+// update json file
+function writeFile(){
+    let newNotes = JSON.stringify(notes);
+    data.writeData(newNotes);
+}
 
-interactivePoints();
-
+// event listeners
 // remove subject
-const delButton = document.getElementById('deleteBTN');
-
 delButton.addEventListener("click", () => {
     notes.splice(index, 1);
     renderData(0);
@@ -110,18 +122,15 @@ delButton.addEventListener("click", () => {
     interactivePoints();
 });
 
-const inputFormAddNew = document.getElementById('addNoteForm');
+// prevent page reload on interacting with form
 inputFormAddNew.addEventListener('submit', (e) => {
     e.preventDefault();
 });
-const inputFormNew = document.getElementById('inputForm');
 inputFormNew.addEventListener('submit', (e) => {
     e.preventDefault();
 });
 
 // save note
-const saveButton = document.getElementById('saveBTN');
-
 saveButton.addEventListener("click", () => {
     notes[index].message = subjectNote.value;
     writeFile();
@@ -129,24 +138,18 @@ saveButton.addEventListener("click", () => {
 });
 
 // open div new note
-const openButton = document.getElementById('addSubjectButton');
-const openDiv = document.getElementById('addForm');
-
 openButton.addEventListener("click", () => {
     openDiv.style.bottom = "0rem";
     interactivePoints();
 });
 
 // close div new
-const closeButton = document.getElementById('closeNewForm');
-
 closeButton.addEventListener("click", () => {
     openDiv.style.bottom = "-14rem";
     interactivePoints();
 });
 
 // add subject
-const newSub = document.getElementById('addNoteBTN');
 newSub.addEventListener("click", () => {
     // get input
     const input = document.getElementById('input').value;
@@ -162,9 +165,3 @@ newSub.addEventListener("click", () => {
         interactivePoints();
     }
 });
-
-// update json file
-function writeFile(){
-    let newNotes = JSON.stringify(notes);
-    data.writeData(newNotes);
-}
